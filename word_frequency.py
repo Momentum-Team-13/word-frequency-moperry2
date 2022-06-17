@@ -14,11 +14,11 @@ def print_word_freq(file):
         lower_case = use_lowercase(remove_punct)
         remove_stop = remove_stop_words(lower_case)
         frequency_count = frequency_counter(remove_stop)
-    print(frequency_count)
-        #print(len(open_file))
-# def split_text(text):
-#     return text.split()
-
+        # dictionary_count = count_dict(frequency_count)
+        new_list = sorted(frequency_count.items(), key=lambda item: item[1], reverse=True)
+        for x in new_list:
+            print(f"{x[0]:16} | {x[1]} {'*' * x[1]}")
+    
 #step 2: calculate the frequency of words in the file
 def frequency_counter(text):
     freqs = {}
@@ -27,10 +27,10 @@ def frequency_counter(text):
             freqs[word] += 1
         else:
             freqs[word] = 1
+    # print(freqs)
     return freqs
 
-#step 3: Create funciton possibly (reg x) to remove punctuation
-    #text.translate(str.maketrans('', '', string.punctuation))
+#step 3: Create funciton possibly to remove punctuation
 def remove_punctuation(text):
     return text.translate(str.maketrans('', '', string.punctuation))
 #step 4: use lowercase function
@@ -44,15 +44,6 @@ def remove_stop_words(text):
         if word in STOP_WORDS:
             text_list.remove(word)
     return text_list
-
-#step 6: posisbly use dictionary to count each word
-
-#step 7: find a way to format print statement...f string
-
-
-
-
-
 
 if __name__ == "__main__":
     import argparse
